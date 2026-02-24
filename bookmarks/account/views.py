@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .forms import LoginForm
 
+
 # Create your views here.
 def user_login(request):
     if request.method == 'POST':
