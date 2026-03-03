@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 from django.utils.text import slugify
+from unidecode import unidecode
 
 # Create your models here.
 class Images(models.Model):
@@ -33,7 +34,8 @@ class Images(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            decode_title = unidecode(self.title)
+            self.slug = slugify(decode_title)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
